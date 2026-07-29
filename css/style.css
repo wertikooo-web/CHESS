@@ -1,4 +1,4 @@
-/* Chess Game Styles v8 - larger pieces */
+/* Chess Game Styles v10 */
 :root {
   --sq: 76px;
   --light-sq: #f0d9b5;
@@ -101,6 +101,7 @@ body.theme-gray{--light-sq:#dfe3e8;--dark-sq:#6b7280}
   line-height:1;
   pointer-events:none;user-select:none;
   font-family:"Segoe UI Symbol","DejaVu Sans","Noto Sans Symbols2","Apple Color Emoji",sans-serif;
+  transform: translateY(-8%);
 }
 .piece-white{
   color:#ffffff;
@@ -140,7 +141,8 @@ body.theme-gray{--light-sq:#dfe3e8;--dark-sq:#6b7280}
   position:absolute;z-index:30;pointer-events:none;
   transition:left .28s ease,top .28s ease;
   display:flex;align-items:center;justify-content:center;
-  font-size:calc(var(--sq) * 0.92)
+  font-size:calc(var(--sq) * 0.92);
+  transform: translateY(-8%);
 }
 @media (max-width:1200px){:root{--sq:60px}.panel{width:220px}}
 @media (max-width:900px){
