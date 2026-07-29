@@ -38,14 +38,15 @@ const FILES = 'abcdefgh';
 // Compact SVG chess pieces (stable cross-OS)
 function createPieceEl(piece) {
     const isWhite = piece === piece.toUpperCase();
-    // Classic Unicode chess symbols — recognizable on all systems
+    // Always use filled "white" Unicode glyphs — color comes from CSS
+    // (black glyphs often render as outlines on Windows and look tiny/ugly)
     const glyphs = {
-        K: '♔', Q: '♕', R: '♖', B: '♗', N: '♘', P: '♙',
-        k: '♚', q: '♛', r: '♜', b: '♝', n: '♞', p: '♟'
+        k: '♚', q: '♛', r: '♜', b: '♝', n: '♞', p: '♟',
+        K: '♚', Q: '♛', R: '♜', B: '♝', N: '♞', P: '♟'
     };
     const el = document.createElement('span');
     el.className = 'piece ' + (isWhite ? 'piece-white' : 'piece-black');
-    el.textContent = glyphs[piece] || piece;
+    el.textContent = glyphs[piece.toLowerCase()] || glyphs[piece] || piece;
     return el;
 }
 
@@ -681,7 +682,7 @@ function animateMove(fr, fc, tr, tc, piece, cb) {
     boardEl.appendChild(ghost);
 
     // hide piece on target during anim
-    const targetPiece = toEl && toEl.querySelector('.piece-svg');
+    const targetPiece = toEl && toEl.querySelector('.piece');
     if (targetPiece) targetPiece.style.opacity = '0';
 
     requestAnimationFrame(() => {
